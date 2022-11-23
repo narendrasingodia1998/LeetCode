@@ -1,28 +1,26 @@
 class Solution {
 public:
     int minDeletions(string s) {
-        unordered_map<char,int> m;
+        vector<int> freq(26,0);
+        //unordered_map<char,int> m;
         for(int i=0;i<s.length();i++){
-            m[s[i]]++;
+            freq[s[i]-'a']++;
         }
-        vector<int> arr;
-        for(auto i:m){
-            arr.push_back(i.second);
-        }
-        sort(arr.begin(),arr.end());
-        //set<int> s;
-        int ans=0,last=INT_MAX;
-        for(int i=arr.size()-1;i>=0;i--){
-            if(arr[i]>=last){
-                ans+=arr[i]-last+1;
-                arr[i]=last-1;
-                last--;
-                if(last==0){
-                    last=1;
-                }
+        sort(freq.begin(),freq.end());
+        int ans=0;
+        for(int i=24;i>=0;i--){
+            if(freq[i]==0){
+                return ans;
             }
-            else{
-                last=arr[i];
+            if(freq[i]>=freq[i+1]){
+                if(freq[i+1]==0){
+                    ans+=freq[i];
+                    freq[i]=0;
+                }
+                else{
+                    ans+=freq[i]-freq[i+1]+1;
+                    freq[i]=freq[i+1]-1;
+                }
             }
         }
         return ans;

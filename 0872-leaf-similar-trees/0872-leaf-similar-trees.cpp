@@ -27,14 +27,6 @@ public:
         vector<int> leaf2;
         getLeaf(root1,leaf1);
         getLeaf(root2,leaf2);
-        if(leaf1.size()!=leaf2.size()){
-            return false;
-        }
-        for(int i=0;i<leaf1.size();i++){
-            if(leaf1[i]!=leaf2[i]){
-                return false;
-            }
-        }
-        return true;
+        return leaf1==leaf2;
     }
 };

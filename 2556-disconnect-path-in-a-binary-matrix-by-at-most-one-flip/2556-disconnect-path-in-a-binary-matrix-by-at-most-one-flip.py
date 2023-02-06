@@ -1,5 +1,5 @@
 class Solution:
-    def isPossibleToCutPath(self, grid: List[List[int]]) -> bool:
+    def dp(self,grid):
         m,n=len(grid),len(grid[0])
         
         dp1=[[0]*(n+1) for _ in range(m+1)]
@@ -25,4 +25,6 @@ class Solution:
                     if dp1[i+1][j+1]*dp2[i][j]==target:
                         return True
         return False
-        
+    
+    def isPossibleToCutPath(self, grid: List[List[int]]) -> bool:
+        return self.dp(grid)        

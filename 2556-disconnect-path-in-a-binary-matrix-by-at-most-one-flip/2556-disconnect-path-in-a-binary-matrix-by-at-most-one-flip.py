@@ -26,5 +26,23 @@ class Solution:
                         return True
         return False
     
+    def dfs(self,grid,i,j) ->bool:
+        m,n=len(grid),len(grid[0])
+        if i>=m or j>=n or not grid[i][j]:
+            return False
+        if i==m-1 and j==n-1:
+            return True
+        grid[i][j]=0
+        return self.dfs(grid,i+1,j) or self.dfs(grid,i,j+1)
+    
+    def two_dfs(self,grid):
+        if not self.dfs(grid,0,0):
+            return True
+        grid[0][0]=1
+        return not self.dfs(grid,0,0)
+            
+        
+        
     def isPossibleToCutPath(self, grid: List[List[int]]) -> bool:
-        return self.dp(grid)        
+        #return self.dp(grid)        
+        return self.two_dfs(grid)

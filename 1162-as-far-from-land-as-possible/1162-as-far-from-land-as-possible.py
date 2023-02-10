@@ -14,7 +14,7 @@ class Solution:
         dir_=[(-1,0),(0,1),(0,1),(1,0),(0,-1)]
         while queue:
             size=len(queue)
-            print(queue)
+            #print(queue)
             for i in range(size):
                 i,j=queue.popleft()
                 for di,dj in dir_:

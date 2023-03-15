@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+    def bfs(self,root):
         if not root:
             return True
         nullNodeFound=False
@@ -21,3 +21,6 @@ class Solution:
                 q.append(node.left)
                 q.append(node.right)
         return True
+    
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+        return self.bfs(root)

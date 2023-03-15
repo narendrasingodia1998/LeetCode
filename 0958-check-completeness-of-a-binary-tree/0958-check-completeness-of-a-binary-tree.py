@@ -6,18 +6,18 @@
 #         self.right = right
 class Solution:
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
-        queue=deque()
-        last_index=-1
-        queue.append((root,0))
-        while len(queue):
-            size=len(queue)
-            for i in range(size):
-                node,index=queue.popleft()
-                if index-last_index!=1:
+        if not root:
+            return True
+        nullNodeFound=False
+        q=deque()
+        q.append(root)
+        while q:
+            node=q.popleft()
+            if not node:
+                nullNodeFound=True
+            else:
+                if nullNodeFound:
                     return False
-                last_index=index
-                if node.left:
-                    queue.append((node.left,2*index+1))
-                if node.right:
-                    queue.append((node.right,2*index+2))
+                q.append(node.left)
+                q.append(node.right)
         return True
